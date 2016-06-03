@@ -1,0 +1,35 @@
+body {
+    background: black;
+}
+
+#header {
+    background: #303F9F;
+    text-align: center;
+    padding: 30px;
+}
+
+#header h4,
+span,
+h1 {
+    color: white;
+}
+
+#question {
+    color: white;
+}
+
+#main {
+    overflow-y: scroll;
+}
+
+.color_option {
+    float: left;
+    position: relative;
+    color: white;
+    height: 300px;
+    max-height: 50%;
+    width: 33.33333%;
+    text-align: center;
+    background: green;
+    transition: all 0.5s;
+}

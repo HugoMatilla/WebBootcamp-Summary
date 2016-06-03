@@ -303,4 +303,178 @@ Choose the number/size of columns depending on the size of the screen: large(lg)
 ```
   <div class="col-md-3 col-sm-6">TOUR DATE!</div>
   <div class="col-md-3 col-sm-6">TOUR DATE!</div>
+
 ```
+
+#DOM
+Document Object Model  
+The Interface between javascript and HTML+CSS   
+The browser turns every HTML tag into a javascript object that we can manipulate.  
+Everything is stored inside of the _document_ object.  
+
+
+`console.dir(document)`
+
+
+##Selection
+Access main attributes
+```javascript
+
+	document.URL
+	document.head
+	document.body
+	document.links
+```
+
+Selecting
+```javascript
+
+	document.getElementById()
+	document.getElementsByClassName()
+	document.getElementByTagName()
+	document.querySelector()// Use CSS selector # for ids, . for classes. Only return the first element
+	document.querySelectorAll()// Returns the all the elements
+
+```
+##Manipulation
+###Style
+Change visual style changing its classes.
+```javascript
+
+	var tag = document.querySelector("p")
+	tag.classList.add("className")
+	tag.classList.remove("className")
+	tag.classList.toggle("className")
+```	
+###Content
+
+```javascript
+
+	var tag = document.querySelector("p")
+	tag.textContent = "some text"
+	tag.innerHTML = "some text"// Keep the HTML inside the content
+```
+
+###Attributes
+
+```javascript
+
+	var link = document.querySelector("a")
+	link.getAttrubute("href")
+	link.setAttrubute("href","www.google.com")
+
+	var img = document.querySelector("img")
+	link.setAttrubute("src","cat.png")
+```	
+
+###Events
+`element.addEventListener(type, functionToCall);`
+
+```javascript
+	
+	var button = document.querySelector("button");
+	button.addEventListener("click", function() {
+	  console.log("Button clicked!");
+	});
+```	
+
+[Event reference](https://developer.mozilla.org/en-US/docs/Web/Events)
+
+* click
+* mouseover
+* mouseout
+
+```javascript
+
+	var lis = document.querySelectorAll("li");
+
+	for(var i = 0; i < lis.length; i++){
+		lis[i].addEventListener("mouseover", function(){
+			this.classList.add("selected");
+		});
+
+		lis[i].addEventListener("mouseout", function(){
+			this.classList.remove("selected");
+		});
+
+		lis[i].addEventListener("click", function(){
+			this.classList.toggle("done");
+		});
+	}
+
+```
+#JQuery
+[YOU MIGHT NOT NEED JQUERY](http://youmightnotneedjquery.com/)
+
+##Basic
+
+**CSS**
+`$("div").css("background", "purple");`
+
+**Full Style**
+```
+
+	var style = {
+		color:"lightskyblue",
+		background:"powderblue",
+		border:"2px solid thistle"
+	}
+```
+`$("div").css(style);`
+
+**Item in the array**
+`$("div:first-of-type").css("color");`// HTML    
+`$("div:first").css("color");`// Jquery   
+`$("img").last().css("color");`   
+
+**Main functions**
+
+* `val()` ("_What is inside the form_") Get the current value of the first element in the set of matched elements or set the value of every matched element.
+* `text()` Get the combined text contents of each element in the set of matched elements, including their descendants, or set the text contents of the matched elements.
+* `html()` Get the HTML contents of the first element in the set of matched elements or set the HTML contents of every matched element.
+* `attr()` Get the value of an attribute for the first element in the set of matched elements or set one or more attributes for every matched element.
+* `addClass()` Adds the specified class(es) to each element in the set of matched elements.
+* `removeClass()` Remove a single class, multiple classes, or all classes from each element in the set of matched elements.
+* `toggleClass()` Add or remove one or more classes from each element in the set of matched elements, depending on either the class’s presence or the value of the state argument.
+
+##Events
+
+* `click()` Bind an event handler to the “click” JavaScript event, or trigger that event on an element.
+* `keypress()` Bind an event handler to the “_keypress_” JavaScript event, or trigger that event on an element. Use `which` to get the key that was pressed.
+
+```
+
+	$("input").keypress(function(event){
+		console.log(`You pressed  ${event.which} in ${$(this).id()}`)
+	})
+```
+
+* `on()` Attach an event handler function for one or more events to the selected elements.
+	*	"click"
+	*	"dblclick"
+	*	"keypress"
+	* 	"mouseneter"
+	* 	"mouseleave"
+
+### Click vs On
+
+* `click()` only adds listeners for existing elements
+* `on()` will add listeners for all potential future elements
+
+##Effects
+
+```
+	
+	$("button").on("click", function(){
+		$('div').fadeOut(1000, function(){
+		 	$(this).remove();
+		});
+	});
+```	
+
+* `fadeOut()`
+* `fadeIn()`
+* `fadeToggle()`
+* `slideDown()`
+* `slideUp()`
+* `slideToggle()`
