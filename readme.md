@@ -205,6 +205,8 @@ A `button` as the last element in a form does the same as submit.
 		background: purple;
 	}
 ```
+###Gradients
+[uigradients.com](http://uigradients.com/)
 
 ## Specificity
 [Specificity](https://developer.mozilla.org/en/docs/Web/CSS/Specificity)
@@ -453,8 +455,17 @@ Change visual style changing its classes.
 	*	"click"
 	*	"dblclick"
 	*	"keypress"
-	* 	"mouseneter"
+	* 	"mouseenter"
 	* 	"mouseleave"
+
+**stop propagation**
+```javascript
+
+	$("ul").on("click", "span", function(event){
+		$(this).remove();
+		event.stopPropagation();
+	});
+```	
 
 ### Click vs On
 
