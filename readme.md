@@ -489,3 +489,34 @@ Change visual style changing its classes.
 * `slideDown()`
 * `slideUp()`
 * `slideToggle()`
+
+#2. BACKEND
+There is no option to send PUT, DELETE, etc. via forms.
+It is needed to add `method-override` npm package and postfix to the url `<url>?_method=PUT`, `<url>?_method=DELETE`...
+```
+
+	var methodOverride=require("method-override");
+	app.use(methodOverride("_method"));
+```
+
+Add `express-sanitizer` to avoid script injection
+```
+
+	// Always after the bodyParser
+	app.use(bodyParser.urlencoded({extended: true}));
+	app.use(expressSanitizer());
+
+	...
+	req.body.blog.body = req.sanitizer(req.body.blog.body);
+```
+##RESTFul and MONGO
+
+| Name    | Path           | HTTP Verb | Purpose                                          | Mongoose Method         |
+|---------|----------------|-----------|--------------------------------------------------|-------------------------|
+| Index   | /dogs          | GET       | List all dogs                                    | Dog.find()              |
+| New     | /dogs/new      | GET       | Show new dog form                                | N/A                     |
+| Create  | /dogs          | POST      | Create a new dog, then redirect somewhere        | Dog.create()            |
+| Show    | /dogs/:id      | GET       | Show info about one specific dog                 | Dog.findById()          |
+| Edit    | /dogs/:id/edit | GET       | Show edit form for one dog                       | Dog.findById()          |
+| Update  | /dogs/:id      | PUT       | Update particular dog, then redirect somewhere   | Dog.findByIdAndUpdate() |
+| Destroy | /dogs/:id      | DELETE    | Delete a particular dog, then redirect somewhere | Dog.findByIdAndRemove() |
